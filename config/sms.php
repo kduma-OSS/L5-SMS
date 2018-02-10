@@ -18,9 +18,7 @@ return [
             'password' => env('SMS_SERWERSMS_PASSWORD'),
             'sender'   => 'INFORMACJA',
             'eco'      => true,
-            'flash'    => true,
-
-            'test'     => true,
+            'flash'    => false,
         ],
 
         // to use this driver you need to require kduma/sms-driver-justsend
