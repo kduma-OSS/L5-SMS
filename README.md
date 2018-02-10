@@ -30,6 +30,43 @@ SMS::balance();
 SMS::driver('serwersms')->send('phone number', 'Message.');
 ```
 
+## Laravel 5.3 Notifications Channel Usage
+
+Follow Laravel's documentation to add the channel your Notification class, for example:
+
+```php
+use Illuminate\Notifications\Notification;
+use KDuma\SMS\NotificationChannel\SMSChannel;
+use KDuma\SMS\NotificationChannel\SMSMessage;
+
+class NotificationSMSChannelTestNotification extends Notification
+{
+    public function via($notifiable)
+    {
+        return [SMSChannel::class];
+    }
+    
+    public function toSMS($notifiable)
+    {
+        return SMSMessage::create('This is a test SMS sent via Simple SMS using Laravel Notifications!');
+    }
+}
+```  
+
+Also you need to add a `routeNotificationForSMS` method to your Notifiable model to return the phone number, for example:  
+
+```php
+public function routeNotificationForSMS()
+{
+    return $this->phone_number;
+}
+```    
+
+### `SMSMessage` Available methods
+
+* `content()` - SMS content
+* `channel()` - Set the configured SMS channel
+
 ## Credits
 
 - [Krystian Duma][link-author]
