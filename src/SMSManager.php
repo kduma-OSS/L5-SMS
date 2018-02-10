@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use InvalidArgumentException;
 use KDuma\SMS\Drivers\LogSenderDriver;
 use KDuma\SMS\Drivers\SMSSenderDriverInterface;
+use KDuma\SMS\Drivers\SMSChecksBalanceDriverInterface;
 
 class SMSManager
 {
@@ -58,7 +59,7 @@ class SMSManager
      * Get a SMS driver instance.
      *
      * @param  string|null  $driver
-     * @return mixed
+     * @return SMSSenderDriverInterface | SMSChecksBalanceDriverInterface
      */
     public function driver($driver = null)
     {
@@ -69,7 +70,7 @@ class SMSManager
      * Attempt to get the log from the local cache.
      *
      * @param  string  $name
-     * @return SMSSender
+     * @return SMSSenderDriverInterface | SMSChecksBalanceDriverInterface
      */
     protected function get($name)
     {
