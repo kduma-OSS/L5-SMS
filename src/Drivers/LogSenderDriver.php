@@ -1,7 +1,7 @@
 <?php
 namespace KDuma\SMS\Drivers;
 
-class LogDriver implements SMSDriverInterface
+class LogSenderDriver implements SMSSenderDriverInterface
 {
     /**
      * The application instance.

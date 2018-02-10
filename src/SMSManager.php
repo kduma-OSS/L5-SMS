@@ -5,8 +5,8 @@ use Closure;
 use Throwable;
 use Illuminate\Support\Str;
 use InvalidArgumentException;
-use KDuma\SMS\Drivers\LogDriver;
-use KDuma\SMS\Drivers\SMSDriverInterface;
+use KDuma\SMS\Drivers\LogSenderDriver;
+use KDuma\SMS\Drivers\SMSSenderDriverInterface;
 
 class SMSManager
 {
@@ -117,7 +117,7 @@ class SMSManager
      * Resolve the given log instance by name.
      *
      * @param  string  $name
-     * @return SMSDriverInterface
+     * @return SMSSenderDriverInterface
      *
      * @throws \InvalidArgumentException
      */
@@ -152,7 +152,7 @@ class SMSManager
      * Create a custom log driver instance.
      *
      * @param  array  $config
-     * @return SMSDriverInterface
+     * @return SMSSenderDriverInterface
      */
     protected function createCustomDriver(array $config)
     {
@@ -220,10 +220,10 @@ class SMSManager
      * Create an instance of the log SMS driver.
      *
      * @param  array  $config
-     * @return SMSDriverInterface
+     * @return SMSSenderDriverInterface
      */
     protected function createLogDriver(array $config)
     {
-        return new LogDriver($this->app, $config['level'] ?? 'debug');
+        return new LogSenderDriver($this->app, $config['level'] ?? 'debug');
     }
 }

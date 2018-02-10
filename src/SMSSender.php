@@ -1,20 +1,21 @@
 <?php
 namespace KDuma\SMS;
 
-use KDuma\SMS\Drivers\SMSDriverInterface;
+use KDuma\SMS\Drivers\SMSChecksBalanceDriverInterface;
+use KDuma\SMS\Drivers\SMSSenderDriverInterface;
 
 class SMSSender
 {
     /**
-     * @var SMSDriverInterface
+     * @var SMSSenderDriverInterface | SMSChecksBalanceDriverInterface
      */
     protected $driver;
 
     /**
      * SMSSender constructor.
-     * @param SMSDriverInterface $driver
+     * @param SMSSenderDriverInterface $driver
      */
-    public function __construct(SMSDriverInterface $driver)
+    public function __construct(SMSSenderDriverInterface $driver)
     {
         $this->driver = $driver;
     }
@@ -28,5 +29,17 @@ class SMSSender
     public function send($to, $message)
     {
         $this->driver->send($to, $message);
+    }
+
+    /**
+     * @return int
+     * @throws UnsupportedDriverFeatureException
+     */
+    public function balance()
+    {
+        if (!$this->driver instanceof SMSChecksBalanceDriverInterface)
+            throw new UnsupportedDriverFeatureException('Balance Checking');
+
+        return $this->driver->balance();
     }
 }

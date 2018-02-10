@@ -1,7 +1,7 @@
 <?php
 namespace KDuma\SMS\Drivers;
 
-interface SMSDriverInterface
+interface SMSSenderDriverInterface
 {
     /**
      * @param $to      string   Recipient phone number
