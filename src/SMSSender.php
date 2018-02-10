@@ -3,6 +3,7 @@ namespace KDuma\SMS;
 
 use KDuma\SMS\Drivers\SMSChecksBalanceDriverInterface;
 use KDuma\SMS\Drivers\SMSSenderDriverInterface;
+use KDuma\SMS\Exceptions\UnsupportedDriverFeatureException;
 
 class SMSSender
 {

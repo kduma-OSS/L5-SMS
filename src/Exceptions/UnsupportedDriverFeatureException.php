@@ -1,5 +1,5 @@
 <?php
-namespace KDuma\SMS;
+namespace KDuma\SMS\Exceptions;
 
 use Exception;
 use Throwable;
