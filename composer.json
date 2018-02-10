@@ -1,0 +1,36 @@
+{
+    "name": "kduma/sms",
+    "description": "An SMS sender for Laravel 5 with Notification Channel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Krystian Duma",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "~7.1",
+        "illuminate/support": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "KDuma\\SMS\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "KDuma\\SMS\\SMSServiceProvider"
+            ],
+            "aliases": {
+                "Passphrase": "KDuma\\SMS\\Facades\\SMS"
+            }
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}
