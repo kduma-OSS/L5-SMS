@@ -73,44 +73,9 @@ class SMSManager
      */
     protected function get($name)
     {
-//        try {
-            return $this->channels[$name] ?? with($this->resolve($name), function ($driver) use ($name) {
-                    return $this->tap($name, new SMSSender($driver));
-                });
-//        } catch (Throwable $e) {
-//            return tap($this->createEmergencyLogger(), function ($logger) use ($e) {
-//                $logger->emergency('Unable to create configured logger. Using emergency logger.', [
-//                    'exception' => $e,
-//                ]);
-//            });
-//        }
-    }
-
-    /**
-     * Apply the configured taps for the driver.
-     *
-     * @param  string    $name
-     * @param  SMSSender $driver
-     * @return SMSSender
-     */
-    protected function tap($name, SMSSender $driver)
-    {
-        foreach ($this->configurationFor($name)['tap'] ?? [] as $tap) {
-            list($class, $arguments) = $this->parseTap($tap);
-            $this->app->make($class)->__invoke($driver, ...explode(',', $arguments));
-        }
-        return $driver;
-    }
-
-    /**
-     * Parse the given tap class string into a class name and arguments string.
-     *
-     * @param  string  $tap
-     * @return array
-     */
-    protected function parseTap($tap)
-    {
-        return Str::contains($tap, ':') ? explode(':', $tap, 2) : [$tap, ''];
+        return $this->channels[$name] ?? with($this->resolve($name), function ($driver) use ($name) {
+            return new SMSSender($driver);
+        });
     }
 
     /**

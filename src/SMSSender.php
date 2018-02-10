@@ -24,11 +24,11 @@ class SMSSender
      * @param $to      string   Recipient phone number
      * @param $message string   Message to send
      *
-     * @return void
+     * @return mixed
      */
     public function send($to, $message)
     {
-        $this->driver->send($to, $message);
+        return $this->driver->send($to, $message);
     }
 
     /**
