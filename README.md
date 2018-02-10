@@ -23,6 +23,17 @@ And following facade to facades array:
 
     'SMS' => KDuma\SMS\Facades\SMS::class,
     
+Publish `sms.php` config file using following command:
+
+    php artisan vendor:publish --provider="KDuma\SMS\SMSServiceProvider"
+    
+Now You can install and configure SMS channels and drivers. Configuration options are available in drivers readme's.
+
+## Available Drivers
+
+- SerwerSMS.pl - [kduma/sms-driver-serwersms](https://github.com/kduma-OSS/L5-SMS-Driver-SerwerSMS)
+- JustSend.pl - [kduma/sms-driver-justsend](https://github.com/kduma-OSS/L5-SMS-Driver-JustSend)
+    
 ## Usage
 ``` php
 SMS::send('phone number', 'Message.');
