@@ -29,11 +29,11 @@ class SMSServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(SMSSender::class, function ($app) {
-            return new SMSSender();
+        $this->app->singleton(SMSManager::class, function () {
+            return new SMSManager($this->app);
         });
     }
-    
+
     /**
      * Get the services provided by the provider.
      *
@@ -41,6 +41,6 @@ class SMSServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [SMSSender::class];
+        return [SMSManager::class];
     }
 }

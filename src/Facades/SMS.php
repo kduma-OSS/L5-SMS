@@ -2,7 +2,7 @@
 namespace KDuma\SMS\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use KDuma\SMS\SMSSender;
+use KDuma\SMS\SMSManager;
 
 class SMS extends Facade
 {
@@ -12,6 +12,6 @@ class SMS extends Facade
      * @return string
      */
     protected static function getFacadeAccessor() {
-        return SMSSender::class;
+        return SMSManager::class;
     }
 }

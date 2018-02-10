@@ -24,7 +24,7 @@
                 "KDuma\\SMS\\SMSServiceProvider"
             ],
             "aliases": {
-                "Passphrase": "KDuma\\SMS\\Facades\\SMS"
+                "SMS": "KDuma\\SMS\\Facades\\SMS"
             }
         }
     },
